@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using static UnityEditor.Progress;
 
 public class GamePlayer : MonoBehaviour
 {
@@ -12,13 +15,85 @@ public class GamePlayer : MonoBehaviour
     public float GameTimer; // 숫자 - float (소수점o)
     public bool IsPlaying;     //맞냐 틀리냐 true false
 
+    public GameObject txtTimer;
+    public GameObject txtName;
+    public GameObject txtScoreValue;
+    public GameObject txtHpValue;
+
+    public GameObject coinPrefab;
+    public GameObject enemyPrefab;
+
+    public GameObject itemContainer;
+    public GameObject enemyContainer;
+
+    public int ItemCount = 30;
+    public float mapSize = 20;
+    public int EnemyCount = 30;
+
+
+
     private void Start()
     {
+        txtName.GetComponent<TMP_Text>().text = PlayerName;
+
+        txtHpValue.GetComponent<TMP_Text>().text = Hp.ToString();
+
+        // 생성
+        //오버로딩
+        //Instantiate()
+
+        //Instantiate(coinPrefab, position . rotation);
+
+        //itemContainer.transform
+        //itemContainer.GetComponent<Transform>()
+
+        //제어문
+        //for문
+        //if문
+
+        //            시작   ;   끝   ;   변화
+        int count;
+        for (  count = 0 ;  count < ItemCount; count++  )
+        {
+            Debug.Log("반복중입니다");
+            GameObject item = Instantiate(coinPrefab, itemContainer.transform);
+            //변수
+            float halfSzie = mapSize / 2;
+            float randomX = Random.Range(halfSzie * -1, halfSzie);
+            float randomZ = Random.Range(halfSzie * -1, halfSzie);
+            item.transform.position = new Vector3(randomX, 1, randomZ);
+
+        }
+
+        //enemy
+        for ( count = 0; count < EnemyCount  ; count++)
+        {
+            GameObject enemy = Instantiate(enemyPrefab, enemyContainer.transform);
+
+            float halfSzie = mapSize / 2;
+            float randomX = Random.Range(halfSzie * -1, halfSzie);
+            float randomZ = Random.Range(halfSzie * -1, halfSzie);
+
+            enemy.transform.position = new Vector3(randomX, 1, randomZ);
+        }
+
+
+
+        // 파괴
+        //Destroy()
+
+        //활성화/비활성화
+        //txtName.SetActive(true)
+        //txtName.SetActive(false)
+
+        // 컴포넌트 접근
+        //GetComponent<>()
 
     }
 
     private void Update()
     {
+
         if (!IsPlaying)
         {
             Debug.Log("게임이 끝났습니다");
@@ -30,6 +105,9 @@ public class GamePlayer : MonoBehaviour
         {
             IsPlaying = false;
         }
+
+        txtTimer.GetComponent<TMP_Text>().text = GameTimer.ToString("f1");
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -58,6 +136,10 @@ public class GamePlayer : MonoBehaviour
             // 0 = 0 + 1
             Score = Score + 1;
         }
+
+        txtScoreValue.GetComponent<TMP_Text>().text = Score.ToString();
+
+        txtHpValue.GetComponent<TMP_Text>().text = Hp.ToString();
 
         Destroy(other.gameObject);
     }

@@ -5546,6 +5546,15 @@ MonoBehaviour:
   txtName: {fileID: 1388655822}
   txtScoreValue: {fileID: 1236394311}
   txtHpValue: {fileID: 308935344}
+  coinPrefab: {fileID: 4823674202992463350, guid: 73774f0ffc43c764eb24d5d6b16db471,
+    type: 3}
+  enemyPrefab: {fileID: 3639307445843983461, guid: e116ad97114bd6e41b355fdbb3b8457d,
+    type: 3}
+  itemContainer: {fileID: 1020699586}
+  enemyContainer: {fileID: 457003470}
+  ItemCount: 30
+  mapSize: 20
+  EnemyCount: 30
 --- !u!4 &1451493589 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3507529684465261469, guid: c5c251c4f6ea3694285b311cea75f2a2,
@@ -7018,6 +7027,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerArmature
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918481, guid: 64dce48905ffd9b4293e595fa6941544,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544,
         type: 3}
